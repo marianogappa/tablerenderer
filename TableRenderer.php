@@ -6,9 +6,7 @@ class TableRenderer {
             return "";
 
         $headerRow = array_combine(array_keys($content[0]), $header ?: array_keys($content[0]));
-        array_push($content, $headerRow);
-        $lengths = self::calculateColumnLengths($content);
-        array_pop($content);
+        $lengths = self::calculateColumnLengths($content, $headerRow);
 
         return implode(self::printLine(self::getFullLength($lengths), $edge, $hLine), [
             "",
@@ -20,7 +18,8 @@ class TableRenderer {
         ]);
     }
 
-    private static function calculateColumnLengths(array $content) {
+    private static function calculateColumnLengths(array $content, array $headerRow) {
+        array_push($content, $headerRow);
         return array_combine(array_keys($content[0]), array_map(function($item) use ($content) {
             return self::calculateColumnLength($content, $item);
         }, array_keys($content[0])));
