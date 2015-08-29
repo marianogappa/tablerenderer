@@ -124,15 +124,15 @@ NOWDOC;
 
         $expected = <<<'NOWDOC'
 #****************************************************************************************#
-| First Name | Email Address              | Post Address                                 |
+I First Name I Email Address              I Post Address                                 I
 #****************************************************************************************#
-| Value 1    | Value 2                    | Value 3                                      |
-| Value 4    | Value 5 is slightly longer | Value 6                                      |
-| Value 7    | Value 8                    | Value 9 is actually a lot longer than others |
+I Value 1    I Value 2                    I Value 3                                      I
+I Value 4    I Value 5 is slightly longer I Value 6                                      I
+I Value 7    I Value 8                    I Value 9 is actually a lot longer than others I
 #****************************************************************************************#
 
 NOWDOC;
 
-        $this->assertEquals($expected, TableRenderer::forArray($test, ["First Name", "Email Address", "Post Address"], "#", "*", "|"));
+        $this->assertEquals($expected, TableRenderer::forArray($test, ["First Name", "Email Address", "Post Address"], "#", "*", "I"));
     }
 }
