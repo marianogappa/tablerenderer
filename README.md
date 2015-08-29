@@ -42,6 +42,47 @@ $ php example.php
 +-------------------+
 ```
 
+### Changing the header row
+
+By default, the script uses the array's keys for the header row. You can pass an array with the headers (it's your responsibility to match the number of columns; the script does not validate this).
+
+```
+echo TableRenderer::forArray($sqlResult, ["Id", "First Name", "Age"]);
+```
+
+### Outputs
+
+```
+$ php example.php
++-----------------------+
+| Id | First Name | Age |
++-----------------------+
+| 1  | John       | 15  |
+| 2  | George     | 20  |
+| 3  | Bob        | 30  |
++-----------------------+
+```
+
+### Different table rendering
+
+If you want to render the table differently, you can define the edge, horizontal and vertical characters. The script doesn't make sure they are 1-character long, or take it into account when rendering the table; that is your responsibility.
+
+```
+echo TableRenderer::forArray($sqlResult, ["Id", "First Name", "Age"], "#", "*", "I");
+```
+
+#### Outputs
+
+```
+$ php example.php
+#***********************#
+I Id I First Name I Age I
+#***********************#
+I 1  I John       I 15  I
+I 2  I George     I 20  I
+I 3  I Bob        I 30  I
+#***********************#
+```
 
 # Testing
 
